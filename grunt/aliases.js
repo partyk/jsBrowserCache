@@ -18,6 +18,7 @@ module.exports = {
     'clean', //vycistim slozku
     'babel:build', //spustim build
     'uglify', //minifikace js
+    'jsdoc'
   ]
 
 }; // module.exports

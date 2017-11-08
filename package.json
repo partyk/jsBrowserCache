@@ -19,12 +19,14 @@
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-plugin-transform-remove-console": "^6.8.5",
     "babel-preset-es2015": "^6.24.1",
+    "boxy-jsdoc-template": "^1.3.0",
     "grunt": "^1.0.0",
     "grunt-babel": "^6.0.0",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-jsdoc": "^2.2.0",
     "load-grunt-config": "^0.19.2",
     "time-grunt": "^1.4.0"
   },
@@ -33,6 +35,6 @@
   },
   "dependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "doc": "jsdoc -c .jsdocrc"
   }
 }
