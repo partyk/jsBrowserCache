@@ -1,0 +1,22 @@
+{
+  "name": "js-browser-cache",
+  "description": "",
+  "main": "Gruntfile.js",
+  "authors": [
+    "Bohdan Partyk"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "jquery-validation": "^1.16.0"
+  }
+}
