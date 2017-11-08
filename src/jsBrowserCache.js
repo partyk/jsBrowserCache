@@ -12,13 +12,21 @@ class JsBrowserCache {
     constructor(options) {
         console.info('Creat object JsBrowserCache');
 
-        //vychozi nastveni
+        /**
+         * nastaveni tridy
+         * @private
+         * @type {Object}
+         */
         this._options = Object.assign({}, {
             prefix : 'mafra-',
 
         }, options || {});
 
-        //pomocna promena pro sekundy
+        /**
+         * pomocna promena pro prepocet z milisekund na sekundy
+         * @private
+         * @type {Number}
+         */
         this._seconds = 1*1000;
 
         //otestuji podporu storage

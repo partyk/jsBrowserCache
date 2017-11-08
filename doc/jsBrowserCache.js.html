@@ -20,7 +20,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="JsBrowserCache.html">JsBrowserCache</a><ul class='methods'><li class='list-title'>Methods</li><li data-type='method'><a href="JsBrowserCache.html#_getItem">_getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_IsExceptionOutOfSpace">_IsExceptionOutOfSpace</a></li><li data-type='method'><a href="JsBrowserCache.html#_jsonToString">_jsonToString</a></li><li data-type='method'><a href="JsBrowserCache.html#_removeItem">_removeItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_setItem">_setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_stringToJson">_stringToJson</a></li><li data-type='method'><a href="JsBrowserCache.html#clearExpirate">clearExpirate</a></li><li data-type='method'><a href="JsBrowserCache.html#getItem">getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#isSupportsStorage">isSupportsStorage</a></li><li data-type='method'><a href="JsBrowserCache.html#setItem">setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#testSupportsStorage">testSupportsStorage</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="JsBrowserCache.html">JsBrowserCache</a><ul class='members'><li class='list-title'>Members</li><li data-type='member'><a href="JsBrowserCache.html#_options">_options</a></li><li data-type='member'><a href="JsBrowserCache.html#_seconds">_seconds</a></li></ul><ul class='methods'><li class='list-title'>Methods</li><li data-type='method'><a href="JsBrowserCache.html#_getItem">_getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_IsExceptionOutOfSpace">_IsExceptionOutOfSpace</a></li><li data-type='method'><a href="JsBrowserCache.html#_jsonToString">_jsonToString</a></li><li data-type='method'><a href="JsBrowserCache.html#_removeItem">_removeItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_setItem">_setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_stringToJson">_stringToJson</a></li><li data-type='method'><a href="JsBrowserCache.html#clearExpirate">clearExpirate</a></li><li data-type='method'><a href="JsBrowserCache.html#getItem">getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#isSupportsStorage">isSupportsStorage</a></li><li data-type='method'><a href="JsBrowserCache.html#setItem">setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#testSupportsStorage">testSupportsStorage</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -49,13 +49,21 @@ class JsBrowserCache {
     constructor(options) {
         console.info('Creat object JsBrowserCache');
 
-        //vychozi nastveni
+        /**
+         * nastaveni tridy
+         * @private
+         * @type {Object}
+         */
         this._options = Object.assign({}, {
             prefix : 'mafra-',
 
         }, options || {});
 
-        //pomocna promena pro sekundy
+        /**
+         * pomocna promena pro prepocet z milisekund na sekundy
+         * @private
+         * @type {Number}
+         */
         this._seconds = 1*1000;
 
         //otestuji podporu storage
