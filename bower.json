@@ -1,22 +1,17 @@
 {
-  "name": "js-browser-cache",
-  "description": "",
+  "name": "jsbrowsercache",
+  "description": "Browser cache",
   "main": "Gruntfile.js",
   "authors": [
-    "Bohdan Partyk"
+    "Bohdan Partyk (https://github.com/partyk/jsBrowserCache)"
   ],
-  "license": "ISC",
-  "homepage": "",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "local",
+    "storage",
+    "cache"
   ],
-  "dependencies": {
-    "jquery": "^3.2.1",
-    "jquery-validation": "^1.16.0"
-  }
+  "homepage": "https://github.com/partyk/jsBrowserCache",
+  "private": true
 }

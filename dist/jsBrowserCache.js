@@ -17,7 +17,7 @@ var JsBrowserCache = function () {
 
         this._seconds = 1 * 1000;
 
-        return this.testSupportsStorage();
+        this.testSupportsStorage();
     }
 
     _createClass(JsBrowserCache, [{
@@ -34,7 +34,7 @@ var JsBrowserCache = function () {
                 if (!localStorage) {
                     return false;
                 }
-            } catch (ex) {
+            } catch (e) {
                 return false;
             }
 
@@ -55,7 +55,7 @@ var JsBrowserCache = function () {
         key: 'isSupportsStorage',
         value: function isSupportsStorage() {
             if (!this._supportsStorage) {}
-            return this._supportsStorage || false;
+            return this._supportsStorage;
         }
     }, {
         key: 'setItem',
@@ -141,7 +141,7 @@ var JsBrowserCache = function () {
     }, {
         key: '_removeItem',
         value: function _removeItem(key) {
-            return localStorage.removeItem(this._options.prefix + key);
+            localStorage.removeItem(this._options.prefix + key);
         }
     }, {
         key: '_jsonToString',

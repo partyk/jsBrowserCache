@@ -1,15 +1,19 @@
 {
-  "name": "js-browser-cache",
+  "name": "jsbrowsercache",
   "version": "1.0.0",
-  "description": "Detection of swipe direction",
-  "homepage": "https://github.com/partyk/jsSwipeDetect#readme",
-  "repository": "partyk/jsSwipeDetect",
+  "description": "Browser cache",
+  "homepage": "https://github.com/partyk/jsBrowserCache#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/partyk/jsSwipeDetect.git"
+  },
   "main": "Gruntfile.js",
-  "author": "Bohdan Partyk (https://github.com/partyk/jsSwipeDetect)",
+  "author": "Bohdan Partyk (https://github.com/partyk/jsBrowserCache)",
   "license": "MIT",
   "keywords": [
     "javascript",
-    "swipe"
+    "local storage",
+    "cache"
   ],
   "devDependencies": {
     "babel-plugin-transform-object-assign": "^6.22.0",
@@ -25,7 +29,7 @@
     "time-grunt": "^1.4.0"
   },
   "bugs": {
-    "url": "https://github.com/partyk/jsSwipeDetect/issues"
+    "url": "https://github.com/partyk/jsBrowserCache/issues"
   },
   "dependencies": {},
   "scripts": {
