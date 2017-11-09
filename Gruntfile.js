@@ -5,7 +5,8 @@ module.exports = function (grunt) {
         //cesty
         path: {
             cwd : 'src', //zdrojovy adresar/current working directory
-            dist : 'dist'
+            dist : 'dist',
+            doc : 'doc'
         },
         //podpora prohlizecu pro pluginy s fallback kompilaci. Dokumentace -> https://github.com/ai/browserslist
         browsers: ['> 2% in CZ', 'last 3 version', 'ios 6', 'ie 9'],
