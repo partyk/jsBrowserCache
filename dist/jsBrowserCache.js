@@ -73,8 +73,20 @@ var JsBrowserCache = function () {
                 expire: expiration ? actualTimeStamp + expiration * 1 * this._seconds : ''
             };
 
-            this._removeItem(key);
-            this._setItem(key, this._jsonToString(record));
+            try {
+                this._removeItem(key);
+                this._setItem(key, this._jsonToString(record));
+                return true;
+            } catch (e) {
+                if (this._IsExceptionOutOfSpace(e) && localStorage.length) {
+                    this.clearExpirate();
+                    this._setItem(key, this._jsonToString(record));
+
+                    return !!this._getItem(key);
+                } else {
+                    return false;
+                }
+            }
         }
     }, {
         key: 'getItem',

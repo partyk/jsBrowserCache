@@ -230,7 +230,7 @@
 
 
 <div class="description">
-    vrati zaznam z local storage
+    vrati zaznam z storage
 </div>
 
 
@@ -299,7 +299,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line210">line 210</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line243">line 243</a></div>
 
 
 </div>
@@ -390,7 +390,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line248">line 248</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line281">line 281</a></div>
 
 
 </div>
@@ -481,7 +481,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line229">line 229</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line262">line 262</a></div>
 
 
 </div>
@@ -503,7 +503,7 @@
 
 
 <div class="description">
-    smaze hodntu z local storage
+    smaze hodntu z storage
 </div>
 
 
@@ -556,7 +556,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line219">line 219</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line252">line 252</a></div>
 
 
 </div>
@@ -578,7 +578,7 @@
 
 
 <div class="description">
-    ulozi zaznam do local storage
+    ulozi zaznam do storage
 </div>
 
 
@@ -643,7 +643,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line200">line 200</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line233">line 233</a></div>
 
 
 </div>
@@ -734,7 +734,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line239">line 239</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line272">line 272</a></div>
 
 
 </div>
@@ -756,7 +756,7 @@
 
 
 <div class="description">
-    vymaze expirovane zaznamy
+    vymaze expirovane zaznamy ze storage
 </div>
 
 
@@ -787,9 +787,14 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var cache = new JsBrowserCache();     cache.clearExpirate();</code></pre>
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line165">line 165</a></div>
+
+
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line198">line 198</a></div>
 
 
 </div>
@@ -804,14 +809,14 @@
 <div class="group" id="getItem">
 
 
-    <h4 class="name"><span class="type-signature"></span><b>getItem</b><span class="signature">(<span class="sig-params">key</span>)</span><span class="type-signature">:String|Array|Object|Null</span></h4>
+    <h4 class="name"><span class="type-signature"></span><b>getItem</b><span class="signature">(<span class="sig-params">key</span>)</span><span class="type-signature">:String|Array|Object|Number|Null</span></h4>
 
     
 
 
 
 <div class="description">
-    vrati hodnotu klice z local storage nebo null pokud neexistuje
+    vrati hodnotu ze storage na zaklade zadaneho klice.
 </div>
 
 
@@ -836,7 +841,7 @@
 
     
 
-    <div class="description last"></div>
+    <div class="description last">klic zaznamu</div>
 
     
 </div>
@@ -859,14 +864,18 @@
         
 
 
-<dl class="param-type">
+<dl class="param-type pad-type ">
     <dt>
         Type
     </dt>
     <dd>
-        <span class="param-type">:String|Array|Object|Null</span>
+        <span class="param-type">:String|Array|Object|Number|Null</span>
     </dd>
 </dl>
+
+<div class="param-desc">
+    pokud klic neexistuje vratí null jinak vrati zapsanou hodnotu ve storage
+</div>
 
 
     
@@ -878,9 +887,14 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var cache = new JsBrowserCache();     cache.getItem('test');</code></pre>
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line128">line 128</a></div>
+
+
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line156">line 156</a></div>
 
 
 </div>
@@ -902,7 +916,7 @@
 
 
 <div class="description">
-    vrati tru pokud prohlizec podporuje local storage
+    vrati tru pokud prohlizec podporuje storage
 </div>
 
 
@@ -966,14 +980,14 @@
 <div class="group" id="setItem">
 
 
-    <h4 class="name"><span class="type-signature"></span><b>setItem</b><span class="signature">(<span class="sig-params">key<span class="params-divider">, </span>value<span class="params-divider">, </span>expiration</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name"><span class="type-signature"></span><b>setItem</b><span class="signature">(<span class="sig-params">key<span class="params-divider">, </span>value<span class="params-divider">, </span>expiration</span>)</span><span class="type-signature">:Bool</span></h4>
 
     
 
 
 
 <div class="description">
-    zapis do loacl storage
+    zapise hodnotu do storage
 </div>
 
 
@@ -998,12 +1012,12 @@
 
     
 
-    <div class="description last">klic zaznamu</div>
+    <div class="description last">klic</div>
 
     
 
     
-        <span class="name">value</span><span class="type"><span class="param-type">:String|Array|Object</span></span>
+        <span class="name">value</span><span class="type"><span class="param-type">:String|Array|Object|Number</span></span>
     
 
     
@@ -1022,7 +1036,7 @@
 
     
 
-    <div class="description last"></div>
+    <div class="description last">je nepovinny parametr a udava se v sekundach.</div>
 
     
 </div>
@@ -1040,6 +1054,26 @@
 
 
 
+<h5>Returns</h5>
+
+        
+
+
+<dl class="param-type pad-type ">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        <span class="param-type">:Bool</span>
+    </dd>
+</dl>
+
+<div class="param-desc">
+    vrati hodntu true pokud se hodnota zapise do storage
+</div>
+
+
+    
 
 
 
@@ -1048,9 +1082,14 @@
 
 
 
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var cache = new JsBrowserCache();     cache.setItem('test', 'test string');       cache.setItem('test1', 'test string', 60); //expire 60seconds   </code></pre>
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line98">line 98</a></div>
+
+
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line107">line 107</a></div>
 
 
 </div>

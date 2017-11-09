@@ -97,7 +97,7 @@ class JsBrowserCache {
         }         
     
         try {
-            //spravnou funkcnost otestuji zapisem a ctenim z local storage
+            //spravnou funkcnost otestuji zapisem a ctenim z storage
             this._setItem(key, value);
             this._removeItem(key);
             this._supportsStorage = true; //pokud projde zapis a cteni nastavim podporu na true
@@ -114,29 +114,38 @@ class JsBrowserCache {
     }
 
     /**
-     * vrati tru pokud prohlizec podporuje local storage
+     * vrati tru pokud prohlizec podporuje storage
      * @public
      * @returns {Boolean}
      */
     isSupportsStorage() {
         if (!this._supportsStorage) {
-            console.warn('Browser does not support local storage');
+            console.warn('Browser does not support storage');
         }
         return this._supportsStorage;
     }
     
     /**
-     * zapis do loacl storage
+     * zapise hodnotu do storage
+     * 
      * @public
-     * @param {String} key klic zaznamu 
-     * @param {String|Array|Object} value hodnota muze byt String, Array, Json
-     * @param {Number} expiration 
+     * 
+     * @param {String} key klic
+     * @param {String|Array|Object|Number} value hodnota muze byt String, Array, Json
+     * @param {Number} expiration je nepovinny parametr a udava se v sekundach. 
+     * 
+     * @example
+     *  var cache = new JsBrowserCache();
+     *      cache.setItem('test', 'test string');  
+     *      cache.setItem('test1', 'test string', 60); //expire 60seconds   
+     * 
+     * @returns {Bool} vrati hodntu true pokud se hodnota zapise do storage
      */
     setItem(key, value, expiration) {
         let record,
             actualTimeStamp = new Date().getTime();
         
-        //otestuji jestli je podporovana local storage
+        //otestuji jestli je podporovana storage
         if(!this.isSupportsStorage()) {
             return false;
         }
@@ -152,25 +161,44 @@ class JsBrowserCache {
 
         console.info(record);
 
-        this._removeItem(key);
-        this._setItem(key, this._jsonToString(record));
+        try {
+            this._removeItem(key);
+            this._setItem(key, this._jsonToString(record));
+            return true;
+        } catch (e) {
+            console.warn(e);
+            //zachytavam vyjimku pro pripad ze jeplna storage
+            if (this._IsExceptionOutOfSpace(e) &amp;&amp; localStorage.length) {
+                this.clearExpirate();
+                this._setItem(key, this._jsonToString(record));
+                //a otestuji jestli se zapsala a vratim Bool
+                return !!this._getItem(key);
+            } else {
+                return false;
+            }
+        }
     }
 
     /**
-     * vrati hodnotu klice z local storage nebo null pokud neexistuje
+     * vrati hodnotu ze storage na zaklade zadaneho klice.
      * @public
-     * @param {String} key
-     * @returns {String|Array|Object|Null}
+     * @param {String} key klic zaznamu
+     *  
+     * @example
+     *  var cache = new JsBrowserCache();
+     *      cache.getItem('test');
+     * 
+     * @returns {String|Array|Object|Number|Null} pokud klic neexistuje vratí null jinak vrati zapsanou hodnotu ve storage
      */
     getItem(key) {
         let record;
     
-        //otestuji jestli je podporovana local storage
+        //otestuji jestli je podporovana storage
         if(!this.isSupportsStorage()) {
             return null;
         }
 
-        //ziskam zaznma z local storage
+        //ziskam zaznma ze storage
         record = this._getItem(key);
 
         console.info(record);
@@ -196,18 +224,23 @@ class JsBrowserCache {
     }
 
     /**
-     * vymaze expirovane zaznamy
+     * vymaze expirovane zaznamy ze storage
      * @public
+     * 
+     * @example
+     *  var cache = new JsBrowserCache();
+     *      cache.clearExpirate();
+     * 
      */
     clearExpirate() {
         let keys;
         
-        //otestuji jestli je podporovana local storage
+        //otestuji jestli je podporovana storage
         if(!this.isSupportsStorage()) {
             return null;
         }
 
-        //pokud je neco v local storage, tak pokracuji
+        //pokud je neco v storage, tak pokracuji
         if (localStorage.length > 0) {
 
             //ziskam vsechny klice ktere odpovidaji prefixu
@@ -229,7 +262,7 @@ class JsBrowserCache {
     }
 
     /**
-     * ulozi zaznam do local storage
+     * ulozi zaznam do storage
      * @private
      * @param {String} key klic
      * @param {String} value hodnota
@@ -239,7 +272,7 @@ class JsBrowserCache {
     }
 
     /**
-     * vrati zaznam z local storage
+     * vrati zaznam z storage
      * @private
      * @param {String} key 
      * @returns {String}
@@ -249,7 +282,7 @@ class JsBrowserCache {
     }
 
     /**
-     * smaze hodntu z local storage
+     * smaze hodntu z storage
      * @private
      * @param {String} key 
      */
