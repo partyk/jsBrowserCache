@@ -12,7 +12,8 @@
   "license": "MIT",
   "keywords": [
     "javascript",
-    "local storage",
+    "localStorage",
+    "sessionStorage",
     "cache"
   ],
   "devDependencies": {

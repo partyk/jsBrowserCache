@@ -11,11 +11,14 @@ var JsBrowserCache = function () {
         _classCallCheck(this, JsBrowserCache);
 
         this._options = _extends({}, {
-            prefix: 'mafra-'
+            prefix: 'cache-',
+            storage: 'local'
 
         }, options || {});
 
         this._seconds = 1 * 1000;
+
+        this._setStorage();
 
         this.testSupportsStorage();
     }
@@ -30,12 +33,8 @@ var JsBrowserCache = function () {
                 return this._supportsStorage;
             }
 
-            try {
-                if (!localStorage) {
-                    return false;
-                }
-            } catch (e) {
-                return false;
+            if (!this._storage) {
+                return this._supportsStorage = false;
             }
 
             try {
@@ -43,7 +42,7 @@ var JsBrowserCache = function () {
                 this._removeItem(key);
                 this._supportsStorage = true;
             } catch (e) {
-                if (this._IsExceptionOutOfSpace(e) && localStorage.length) {
+                if (this._IsExceptionOutOfSpace(e) && this._storage.length) {
                     this._supportsStorage = true;
                 } else {
                     this._supportsStorage = false;
@@ -78,7 +77,7 @@ var JsBrowserCache = function () {
                 this._setItem(key, this._jsonToString(record));
                 return true;
             } catch (e) {
-                if (this._IsExceptionOutOfSpace(e) && localStorage.length) {
+                if (this._IsExceptionOutOfSpace(e) && this._storage.length) {
                     this.clearExpirate();
                     this._setItem(key, this._jsonToString(record));
 
@@ -113,8 +112,8 @@ var JsBrowserCache = function () {
             }
         }
     }, {
-        key: 'clearExpirate',
-        value: function clearExpirate() {
+        key: 'clearExpired',
+        value: function clearExpired() {
             var _this = this;
 
             var keys = void 0;
@@ -123,8 +122,8 @@ var JsBrowserCache = function () {
                 return null;
             }
 
-            if (localStorage.length > 0) {
-                keys = Object.keys(localStorage).filter(function (v) {
+            if (this._storage.length > 0) {
+                keys = Object.keys(this._storage).filter(function (v) {
                     return v.startsWith(_this._options.prefix);
                 });
 
@@ -141,19 +140,28 @@ var JsBrowserCache = function () {
             }
         }
     }, {
+        key: '_setStorage',
+        value: function _setStorage(storageName) {
+            try {
+                this._storage = storageName !== 'session' ? localStorage : sessionStorage;
+            } catch (e) {
+                this._storage = false;
+            }
+        }
+    }, {
         key: '_setItem',
         value: function _setItem(key, value) {
-            localStorage.setItem(this._options.prefix + key, value);
+            this._storage.setItem(this._options.prefix + key, value);
         }
     }, {
         key: '_getItem',
         value: function _getItem(key) {
-            return localStorage.getItem(this._options.prefix + key);
+            return this._storage.getItem(this._options.prefix + key);
         }
     }, {
         key: '_removeItem',
         value: function _removeItem(key) {
-            localStorage.removeItem(this._options.prefix + key);
+            this._storage.removeItem(this._options.prefix + key);
         }
     }, {
         key: '_jsonToString',

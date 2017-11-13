@@ -20,7 +20,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="JsBrowserCache.html">JsBrowserCache</a><ul class='members'><li class='list-title'>Members</li><li data-type='member'><a href="JsBrowserCache.html#_options">_options</a></li><li data-type='member'><a href="JsBrowserCache.html#_seconds">_seconds</a></li></ul><ul class='methods'><li class='list-title'>Methods</li><li data-type='method'><a href="JsBrowserCache.html#_getItem">_getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_IsExceptionOutOfSpace">_IsExceptionOutOfSpace</a></li><li data-type='method'><a href="JsBrowserCache.html#_jsonToString">_jsonToString</a></li><li data-type='method'><a href="JsBrowserCache.html#_removeItem">_removeItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_setItem">_setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_stringToJson">_stringToJson</a></li><li data-type='method'><a href="JsBrowserCache.html#clearExpirate">clearExpirate</a></li><li data-type='method'><a href="JsBrowserCache.html#getItem">getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#isSupportsStorage">isSupportsStorage</a></li><li data-type='method'><a href="JsBrowserCache.html#setItem">setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#testSupportsStorage">testSupportsStorage</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="JsBrowserCache.html">JsBrowserCache</a><ul class='members'><li class='list-title'>Members</li><li data-type='member'><a href="JsBrowserCache.html#_options">_options</a></li><li data-type='member'><a href="JsBrowserCache.html#_seconds">_seconds</a></li></ul><ul class='methods'><li class='list-title'>Methods</li><li data-type='method'><a href="JsBrowserCache.html#_getItem">_getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_IsExceptionOutOfSpace">_IsExceptionOutOfSpace</a></li><li data-type='method'><a href="JsBrowserCache.html#_jsonToString">_jsonToString</a></li><li data-type='method'><a href="JsBrowserCache.html#_removeItem">_removeItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_setItem">_setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#_setStorage">_setStorage</a></li><li data-type='method'><a href="JsBrowserCache.html#_stringToJson">_stringToJson</a></li><li data-type='method'><a href="JsBrowserCache.html#clearExpired">clearExpired</a></li><li data-type='method'><a href="JsBrowserCache.html#getItem">getItem</a></li><li data-type='method'><a href="JsBrowserCache.html#isSupportsStorage">isSupportsStorage</a></li><li data-type='method'><a href="JsBrowserCache.html#setItem">setItem</a></li><li data-type='method'><a href="JsBrowserCache.html#testSupportsStorage">testSupportsStorage</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -49,7 +49,7 @@
         JsBrowserCache
         </h2>
         
-            <div class="class-description">JsBrowserCachetrida na praci s localStorage</div>
+            <div class="class-description">JsBrowserCacheJsBrowserCache je trida na ukladani a ziskavani dat z localStorage a sessionStorage s moznosti expirace zaznamu ve storage</div>
         
     
 </header>
@@ -171,7 +171,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line20">line 20</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line25">line 25</a></div>
 
 
 </div>
@@ -202,7 +202,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line30">line 30</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line36">line 36</a></div>
 
 
 </div>
@@ -223,14 +223,14 @@
 <div class="group" id="_getItem">
 
 
-    <h4 class="name"><span class="type-signature">(private) </span><b>_getItem</b><span class="signature">(<span class="sig-params">key</span>)</span><span class="type-signature">:String</span></h4>
+    <h4 class="name"><span class="type-signature">(private) </span><b>_getItem</b><span class="signature">(<span class="sig-params">key</span>)</span><span class="type-signature">:String|Null</span></h4>
 
     
 
 
 
 <div class="description">
-    vrati zaznam z storage
+    vrati zaznam ze storage
 </div>
 
 
@@ -255,7 +255,7 @@
 
     
 
-    <div class="description last"></div>
+    <div class="description last">klic</div>
 
     
 </div>
@@ -278,14 +278,18 @@
         
 
 
-<dl class="param-type">
+<dl class="param-type pad-type ">
     <dt>
         Type
     </dt>
     <dd>
-        <span class="param-type">:String</span>
+        <span class="param-type">:String|Null</span>
     </dd>
 </dl>
+
+<div class="param-desc">
+    vrati hodntou klice jako string. Pokud klic neexistuje vrati Null
+</div>
 
 
     
@@ -299,7 +303,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line243">line 243</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line259">line 259</a></div>
 
 
 </div>
@@ -314,14 +318,14 @@
 <div class="group" id="_IsExceptionOutOfSpace">
 
 
-    <h4 class="name"><span class="type-signature"></span><b>_IsExceptionOutOfSpace</b><span class="signature">(<span class="sig-params">e</span>)</span><span class="type-signature">:Bool</span></h4>
+    <h4 class="name"><span class="type-signature">(private) </span><b>_IsExceptionOutOfSpace</b><span class="signature">(<span class="sig-params">e</span>)</span><span class="type-signature">:Bool</span></h4>
 
     
 
 
 
 <div class="description">
-    otestuje jestli je vyvolaná vyjímka na plný local storge
+    otestuje jestli je vyvolaná vyjímka na plný storge
 </div>
 
 
@@ -390,7 +394,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line281">line 281</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line298">line 298</a></div>
 
 
 </div>
@@ -481,7 +485,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line262">line 262</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line278">line 278</a></div>
 
 
 </div>
@@ -503,7 +507,7 @@
 
 
 <div class="description">
-    smaze hodntu z storage
+    smaze zaznam ve storage
 </div>
 
 
@@ -556,7 +560,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line252">line 252</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line268">line 268</a></div>
 
 
 </div>
@@ -615,7 +619,7 @@
 
     
 
-    <div class="description last">hodnota</div>
+    <div class="description last">hodnota klice</div>
 
     
 </div>
@@ -643,7 +647,82 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line233">line 233</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line249">line 249</a></div>
+
+
+</div>
+
+        
+            
+
+
+    
+
+
+<div class="group" id="_setStorage">
+
+
+    <h4 class="name"><span class="type-signature">(private) </span><b>_setStorage</b><span class="signature">(<span class="sig-params">storage</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    nastavi storage (local|session) local = localStorage, session = sessionStorage
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters</h5>
+    
+
+<div class="params">
+    
+
+    
+        <span class="name">storage</span><span class="type"><span class="param-type">:String</span></span>
+    
+
+    
+
+    
+
+    <div class="description last">nazev storage (local|session)</div>
+
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line235">line 235</a></div>
 
 
 </div>
@@ -734,7 +813,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line272">line 272</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line288">line 288</a></div>
 
 
 </div>
@@ -746,10 +825,10 @@
     
 
 
-<div class="group" id="clearExpirate">
+<div class="group" id="clearExpired">
 
 
-    <h4 class="name"><span class="type-signature"></span><b>clearExpirate</b><span class="signature">(<span class="sig-params"></span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name"><span class="type-signature"></span><b>clearExpired</b><span class="signature">(<span class="sig-params"></span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -789,12 +868,12 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>var cache = new JsBrowserCache();     cache.clearExpirate();</code></pre>
+    <pre class="prettyprint"><code>var cache = new JsBrowserCache();     cache.clearExpired();</code></pre>
 
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line198">line 198</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line201">line 201</a></div>
 
 
 </div>
@@ -894,7 +973,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line156">line 156</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line159">line 159</a></div>
 
 
 </div>
@@ -916,7 +995,7 @@
 
 
 <div class="description">
-    vrati tru pokud prohlizec podporuje storage
+    vrati true pokud prohlizec podporuje storage
 </div>
 
 
@@ -965,7 +1044,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line84">line 84</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line87">line 87</a></div>
 
 
 </div>
@@ -1012,7 +1091,7 @@
 
     
 
-    <div class="description last">klic</div>
+    <div class="description last">unikatni klic zaznamu ve storage</div>
 
     
 
@@ -1024,7 +1103,7 @@
 
     
 
-    <div class="description last">hodnota muze byt String, Array, Json</div>
+    <div class="description last">hodnota muze byt String, Array, Json, Number</div>
 
     
 
@@ -1084,12 +1163,12 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>var cache = new JsBrowserCache();     cache.setItem('test', 'test string');       cache.setItem('test1', 'test string', 60); //expire 60seconds   </code></pre>
+    <pre class="prettyprint"><code>var cache = new JsBrowserCache();     cache.setItem('test1', 'test string');       cache.setItem('test2', 'test string', 60); //expire 60 seconds   </code></pre>
 
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line107">line 107</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line110">line 110</a></div>
 
 
 </div>
@@ -1111,7 +1190,7 @@
 
 
 <div class="description">
-    metoda testuje prohlizec na podporu localStorage
+    metoda testuje prohlizec na podporu storage
 </div>
 
 
@@ -1160,7 +1239,7 @@
 
 
 
-<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line41">line 41</a></div>
+<div class="src">Source: <a href="jsBrowserCache.js.html">jsBrowserCache.js</a>, <a href="jsBrowserCache.js.html#line50">line 50</a></div>
 
 
 </div>
@@ -1184,7 +1263,7 @@
 
 <footer>
     
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc" target="_blank">JSDoc 3.5.5</a> on 10/9/2017 using the <a href="https://github.com/Grafluxe/boxy-jsdoc-template" target="_blank">boxy-jsdoc-template</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc" target="_blank">JSDoc 3.5.5</a> on 10/13/2017 using the <a href="https://github.com/Grafluxe/boxy-jsdoc-template" target="_blank">boxy-jsdoc-template</a> theme.
 </footer>
 
 <script src="scripts/prettify/prettify.js"></script>

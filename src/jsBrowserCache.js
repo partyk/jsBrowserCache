@@ -1,13 +1,18 @@
 "use strict";
 /**
  * @class JsBrowserCache
- * trida na praci s localStorage
+ * JsBrowserCache je trida na ukladani a ziskavani dat z localStorage a sessionStorage s moznosti expirace zaznamu ve storage
  */
 class JsBrowserCache {
     
     /**
      * @constructor
      * @param {Object} options nastaveni
+     * @example
+     *  {
+     *      prefix: 'cache-', // Nasatveni prefixu. Defaultni hodnota je 'cache-'.Prefix se bude pridavat k ID zaznamu, ktery se bude ukladat do storage
+     *      storage: 'session', // Nasatveni typu uloziste. Defaultni hodnota je 'local'. 'local' je pro nastaveni localStorage a 'session' je pro nastaveni sessionStorage
+     *  }
      */
     constructor(options) {
         console.info('Creat object JsBrowserCache');
@@ -18,7 +23,8 @@ class JsBrowserCache {
          * @type {Object}
          */
         this._options = Object.assign({}, {
-            prefix : 'mafra-',
+            prefix : 'cache-',
+            storage: 'local'
 
         }, options || {});
 
@@ -29,12 +35,15 @@ class JsBrowserCache {
          */
         this._seconds = 1*1000;
 
+        //nastavim storage
+        this._setStorage();
+
         //otestuji podporu storage
         this.testSupportsStorage()
     }
 
     /**
-     * metoda testuje prohlizec na podporu localStorage
+     * metoda testuje prohlizec na podporu storage
      * @public
      * @returns {Boolean}
      */
@@ -48,16 +57,10 @@ class JsBrowserCache {
             return this._supportsStorage;
         }
         
-        //otestuji localStorage
-        try {
-            //nekterym prohlizecum staci jen podminka
-            if (!localStorage) {
-                return false;
-            }
-        } catch (e) {
-            //osatni prohlizece vyhazuji exception
-            return false;
-        }         
+        //otestuji jestli existuje kurzor na storage
+        if (!this._storage) {
+            return this._supportsStorage  = false;
+        }       
     
         try {
             //spravnou funkcnost otestuji zapisem a ctenim z storage
@@ -67,7 +70,7 @@ class JsBrowserCache {
         } catch (e) {
             console.warn(e);
             //otestuji jestli neni storage plna
-            if (this._IsExceptionOutOfSpace(e) && localStorage.length) {
+            if (this._IsExceptionOutOfSpace(e) && this._storage.length) {
                 this._supportsStorage  = true;
             } else {
                 this._supportsStorage  = false;
@@ -77,9 +80,9 @@ class JsBrowserCache {
     }
 
     /**
-     * vrati tru pokud prohlizec podporuje storage
+     * vrati true pokud prohlizec podporuje storage
      * @public
-     * @returns {Boolean}
+     * @returns {Boolean} 
      */
     isSupportsStorage() {
         if (!this._supportsStorage) {
@@ -93,14 +96,14 @@ class JsBrowserCache {
      * 
      * @public
      * 
-     * @param {String} key klic
-     * @param {String|Array|Object|Number} value hodnota muze byt String, Array, Json
-     * @param {Number} expiration je nepovinny parametr a udava se v sekundach. 
+     * @param {String} key unikatni klic zaznamu ve storage
+     * @param {String|Array|Object|Number} value hodnota muze byt String, Array, Json, Number
+     * @param {Number} expiration je nepovinny parametr a udava se v sekundach.
      * 
      * @example
      *  var cache = new JsBrowserCache();
-     *      cache.setItem('test', 'test string');  
-     *      cache.setItem('test1', 'test string', 60); //expire 60seconds   
+     *      cache.setItem('test1', 'test string');  
+     *      cache.setItem('test2', 'test string', 60); //expire 60 seconds   
      * 
      * @returns {Bool} vrati hodntu true pokud se hodnota zapise do storage
      */
@@ -131,7 +134,7 @@ class JsBrowserCache {
         } catch (e) {
             console.warn(e);
             //zachytavam vyjimku pro pripad ze jeplna storage
-            if (this._IsExceptionOutOfSpace(e) && localStorage.length) {
+            if (this._IsExceptionOutOfSpace(e) && this._storage.length) {
                 this.clearExpirate();
                 this._setItem(key, this._jsonToString(record));
                 //a otestuji jestli se zapsala a vratim Bool
@@ -192,10 +195,10 @@ class JsBrowserCache {
      * 
      * @example
      *  var cache = new JsBrowserCache();
-     *      cache.clearExpirate();
+     *      cache.clearExpired();
      * 
      */
-    clearExpirate() {
+    clearExpired() {
         let keys;
         
         //otestuji jestli je podporovana storage
@@ -204,10 +207,10 @@ class JsBrowserCache {
         }
 
         //pokud je neco v storage, tak pokracuji
-        if (localStorage.length > 0) {
+        if (this._storage.length > 0) {
 
             //ziskam vsechny klice ktere odpovidaji prefixu
-            keys = Object.keys(localStorage).filter( v => v.startsWith(this._options.prefix) );
+            keys = Object.keys(this._storage).filter( v => v.startsWith(this._options.prefix) );
 
             if (keys.length > 0) {
                 for (let i = 0, length = keys.length; i < length; i++){
@@ -225,39 +228,52 @@ class JsBrowserCache {
     }
 
     /**
+     * nastavi storage (local|session) local = localStorage, session = sessionStorage
+     * @private
+     * @param {String} storage nazev storage (local|session) 
+     */
+    _setStorage(storageName) {
+        try {
+            this._storage = storageName !== 'session' ? localStorage : sessionStorage;
+        } catch(e) {
+            this._storage = false;
+        }
+    }
+
+    /**
      * ulozi zaznam do storage
      * @private
      * @param {String} key klic
-     * @param {String} value hodnota
+     * @param {String} value hodnota klice
      */
     _setItem(key, value) {
-        localStorage.setItem(this._options.prefix + key, value);
+        this._storage.setItem(this._options.prefix + key, value);
     }
 
     /**
-     * vrati zaznam z storage
+     * vrati zaznam ze storage
      * @private
-     * @param {String} key 
-     * @returns {String}
+     * @param {String} key klic
+     * @returns {String|Null} vrati hodntou klice jako string. Pokud klic neexistuje vrati Null
      */
     _getItem(key) {
-        return localStorage.getItem(this._options.prefix + key);
+        return this._storage.getItem(this._options.prefix + key);
     }
 
     /**
-     * smaze hodntu z storage
+     * smaze zaznam ve storage
      * @private
      * @param {String} key 
      */
     _removeItem(key) {
-        localStorage.removeItem(this._options.prefix + key);
+        this._storage.removeItem(this._options.prefix + key);
     }
 
     /**
      * prevede json na string
      * @private
      * @param {Object} json
-     * @returns {String}
+     * @returns {String} 
      */
     _jsonToString(json) {
         return JSON.stringify(json);
@@ -274,7 +290,8 @@ class JsBrowserCache {
     }
 
     /**
-     * otestuje jestli je vyvolaná vyjímka na plný local storge
+     * otestuje jestli je vyvolaná vyjímka na plný storge
+     * @private
      * @param {Object} e exception
      * @returns {Bool}
      */
