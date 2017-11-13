@@ -1,6 +1,6 @@
 {
   "name": "jsbrowsercache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript library for save, load data to localStorage or sessionStorage and expire time.",
   "homepage": "https://github.com/partyk/jsBrowserCache#readme",
   "repository": {
