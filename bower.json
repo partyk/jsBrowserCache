@@ -1,6 +1,6 @@
 {
   "name": "jsbrowsercache",
-  "description": "Browser cache",
+  "description": "JavaScript library for save, load data to localStorage or sessionStorage and expire time.",
   "main": "Gruntfile.js",
   "authors": [
     "Bohdan Partyk (https://github.com/partyk/jsBrowserCache)"
@@ -13,5 +13,12 @@
     "cache"
   ],
   "homepage": "https://github.com/partyk/jsBrowserCache",
-  "private": true
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }

@@ -10,7 +10,11 @@ Download or clone repository.
 
 ## NPM
 
-npm install jsbrowsercache
+npm install jsbrowsercache --save-dev
+
+## Bower
+
+bower install jsbrowsercache
 
 ## Example
 
