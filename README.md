@@ -1,6 +1,6 @@
 # jsBrowserCache
 
-JavaScript library for save, load data to localStorage or sessionStorage and expire item.
+JavaScript library for save, load data to localStorage or sessionStorage and expire time.
 
 ---
 
