@@ -37,5 +37,8 @@
   "dependencies": {},
   "scripts": {
     "doc": "jsdoc -c .jsdocrc"
+  },
+  "directories": {
+    "doc": "doc"
   }
 }
