@@ -29,7 +29,7 @@ var cache = new JsBrowserCache({
     cache.setItem('test1', 'some text', 60); //save item to storage with expire 60 second
 
     //get item
-    cache.setItem('test');
+    cache.getItem('test');
 ```
 
 ```
