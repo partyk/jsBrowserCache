@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/partyk/jsBrowserCache.git"
   },
-  "main": "Gruntfile.js",
+  "main": "dist/jsBrowserCache.min.js",
   "author": "Bohdan Partyk (https://github.com/partyk/jsBrowserCache)",
   "license": "MIT",
   "keywords": [
@@ -34,7 +34,9 @@
   "bugs": {
     "url": "https://github.com/partyk/jsBrowserCache/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jsbrowsercache": "^1.0.2"
+  },
   "scripts": {
     "doc": "jsdoc -c .jsdocrc"
   },
