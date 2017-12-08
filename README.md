@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/jsbrowsercache.svg)](https://badge.fury.io/js/jsbrowsercache)
+
 # jsBrowserCache
 
 JavaScript library for save, load data to localStorage or sessionStorage and expire time.
@@ -46,3 +48,5 @@ var cache = new JsBrowserCache();
 ## Resources
 
 -   [NPM](https://www.npmjs.com/)
+-   [Yarn](https://yarnpkg.com)
+-   [Bower](https://bower.io/)
