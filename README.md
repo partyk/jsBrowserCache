@@ -12,6 +12,10 @@ Download or clone repository.
 
 npm install jsbrowsercache --save-dev
 
+## Yarn
+
+yarn add jsbrowsercache --save-dev
+
 ## Bower
 
 bower install jsbrowsercache
