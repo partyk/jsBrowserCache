@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * @class JsBrowserCache
  * JsBrowserCache je trida na ukladani a ziskavani dat z localStorage a sessionStorage s moznosti expirace zaznamu ve storage
@@ -210,7 +211,7 @@ class JsBrowserCache {
         if (this._storage.length > 0) {
 
             //ziskam vsechny klice ktere odpovidaji prefixu
-            keys = Object.keys(this._storage).filter( v => v.startsWith(this._options.prefix) );
+            keys = Object.keys(this._storage).filter( v => v.indexOf(this._options.prefix)===0 );
 
             if (keys.length > 0) {
                 for (let i = 0, length = keys.length; i < length; i++){

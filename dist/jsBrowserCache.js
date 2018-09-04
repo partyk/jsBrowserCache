@@ -124,7 +124,7 @@ var JsBrowserCache = function () {
 
             if (this._storage.length > 0) {
                 keys = Object.keys(this._storage).filter(function (v) {
-                    return v.startsWith(_this._options.prefix);
+                    return v.indexOf(_this._options.prefix) === 0;
                 });
 
                 if (keys.length > 0) {
