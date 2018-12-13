@@ -6,7 +6,7 @@ JavaScript library for save, load data to localStorage or sessionStorage and exp
 
 ---
 
-## Instalation
+## Installation
 
 Download or clone repository.
 
@@ -32,7 +32,7 @@ var cache = new JsBrowserCache({
 
     //set items
     cache.setItem('test', 'some text'); //save item to storage
-    cache.setItem('test1', 'some text', 60); //save item to storage with expire 60 second
+    cache.setItem('test1', 'some text', 60); //save item to storage with 60 seconds expiration
 
     //get item
     cache.getItem('test');
