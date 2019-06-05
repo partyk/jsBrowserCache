@@ -12,11 +12,11 @@ Download or clone repository.
 
 ## NPM
 
-npm install jsbrowsercache --save-dev
+npm install jsbrowsercache --save
 
 ## Yarn
 
-yarn add jsbrowsercache --save-dev
+yarn add jsbrowsercache --save
 
 ## Bower
 
