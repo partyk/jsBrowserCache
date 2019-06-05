@@ -22,6 +22,25 @@ yarn add jsbrowsercache --save-dev
 
 bower install jsbrowsercache
 
+## How to use
+
+Paste to between head tag 
+
+```
+<script src="../dist/jsBrowserCache.js"></script>
+<script>
+    var cache = new JsBrowserCache.default();
+    cache.clearExpired();
+</script>
+```
+
+Use as import module
+```
+import JsBrowserCache. from 'jsbrowsercache/dist/jsBrowserCache.js';
+
+new JsBrowserCache();
+```
+
 ## Example
 
 ```

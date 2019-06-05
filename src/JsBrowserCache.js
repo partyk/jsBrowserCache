@@ -1,10 +1,8 @@
-"use strict";
-
 /**
  * @class JsBrowserCache
  * JsBrowserCache je trida na ukladani a ziskavani dat z localStorage a sessionStorage s moznosti expirace zaznamu ve storage
  */
-class JsBrowserCache {
+export default class JsBrowserCache {
     
     /**
      * @constructor
