@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-const eslint = require('gulp-eslint');
 const fs = require('fs');
 const clean = require('gulp-clean');
 const uglify = require('gulp-uglify');
@@ -26,7 +25,11 @@ const js = gulp.task('js', (callBack) => {
             // .pipe(eslint())
             // .pipe(eslint.format())
             .pipe(babel(babelrc))
-            .pipe(uglify())
+            .pipe(uglify({
+                compress: {
+                    drop_console: isProduction()
+                }
+            }))
             .pipe(gulp.dest('dist', {
                 sourcemaps: '.'
             }))
