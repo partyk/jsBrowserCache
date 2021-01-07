@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             doc : 'doc'
         },
         //podpora prohlizecu pro pluginy s fallback kompilaci. Dokumentace -> https://github.com/ai/browserslist
-        browsers: ['> 2% in CZ', 'last 3 version', 'ios 6', 'ie 9'],
+        browsers: ['> 1% in CZ', 'last 3 version', 'ios 6', 'ie 10'],
 
         //time-grunt bude ukecanejsi
         jitGrunt: true,

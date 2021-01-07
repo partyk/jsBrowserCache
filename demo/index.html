@@ -9,7 +9,9 @@
     <div id="swipe"></div>
     <script src="../dist/jsBrowserCache.js"></script>
     <script>
-        var cache = new JsBrowserCache();
+        var cache = new JsBrowserCache.default();
+
+        cache.clearExpired();
     </script>
 </body>
 

@@ -8,7 +8,6 @@
 module.exports = (grunt, options) => {
 
     let configModule = {
-        dist : ['<%= path.dist %>'],
         doc : ['<%= path.doc %>']    
     }
 
