@@ -3,7 +3,7 @@
  * JsBrowserCache je trida na ukladani a ziskavani dat z localStorage a sessionStorage s moznosti expirace zaznamu ve storage
  */
 export default class JsBrowserCache {
-    
+
     /**
      * @constructor
      * @param {Object} options nastaveni
@@ -35,7 +35,7 @@ export default class JsBrowserCache {
         this._seconds = 1*1000;
 
         //nastavim storage
-        this._setStorage();
+        this._setStorage(this._options.storage);
 
         //otestuji podporu storage
         this.testSupportsStorage()
@@ -55,12 +55,12 @@ export default class JsBrowserCache {
         if (this._supportsStorage !== undefined) {
             return this._supportsStorage;
         }
-        
+
         //otestuji jestli existuje kurzor na storage
         if (!this._storage) {
             return this._supportsStorage  = false;
-        }       
-    
+        }
+
         try {
             //spravnou funkcnost otestuji zapisem a ctenim z storage
             this._setItem(key, value);
@@ -81,7 +81,7 @@ export default class JsBrowserCache {
     /**
      * vrati true pokud prohlizec podporuje storage
      * @public
-     * @returns {Boolean} 
+     * @returns {Boolean}
      */
     isSupportsStorage() {
         if (!this._supportsStorage) {
@@ -89,27 +89,27 @@ export default class JsBrowserCache {
         }
         return this._supportsStorage;
     }
-    
+
     /**
      * zapise hodnotu do storage
-     * 
+     *
      * @public
-     * 
+     *
      * @param {String} key unikatni klic zaznamu ve storage
      * @param {String|Array|Object|Number} value hodnota muze byt String, Array, Json, Number
      * @param {Number} expiration je nepovinny parametr a udava se v sekundach.
-     * 
+     *
      * @example
      *  var cache = new JsBrowserCache();
-     *      cache.setItem('test1', 'test string');  
-     *      cache.setItem('test2', 'test string', 60); //expire 60 seconds   
-     * 
+     *      cache.setItem('test1', 'test string');
+     *      cache.setItem('test2', 'test string', 60); //expire 60 seconds
+     *
      * @returns {Bool} vrati hodntu true pokud se hodnota zapise do storage
      */
     setItem(key, value, expiration) {
         let record,
             actualTimeStamp = new Date().getTime();
-        
+
         //otestuji jestli je podporovana storage
         if(!this.isSupportsStorage()) {
             return false;
@@ -148,16 +148,16 @@ export default class JsBrowserCache {
      * vrati hodnotu ze storage na zaklade zadaneho klice.
      * @public
      * @param {String} key klic zaznamu
-     *  
+     *
      * @example
      *  var cache = new JsBrowserCache();
      *      cache.getItem('test');
-     * 
+     *
      * @returns {String|Array|Object|Number|Null} pokud klic neexistuje vratí null jinak vrati zapsanou hodnotu ve storage
      */
     getItem(key) {
         let record;
-    
+
         //otestuji jestli je podporovana storage
         if(!this.isSupportsStorage()) {
             return null;
@@ -165,8 +165,6 @@ export default class JsBrowserCache {
 
         //ziskam zaznma ze storage
         record = this._getItem(key);
-
-        console.info(record);
 
         //zjistim jestli polozka existuje
         if(!record) {
@@ -176,8 +174,6 @@ export default class JsBrowserCache {
         //prevedu string na json
         record = this._stringToJson(record);
 
-        console.info(record);
-
         //otestuji jestli je polozka expirovana
         if(record.expire && new Date().getTime() > record.expire) {
             console.log('Item "' + key + '" is expired. Item is removed.');
@@ -185,21 +181,21 @@ export default class JsBrowserCache {
             return null;
         } else {
             return this._stringToJson(record.value);
-        }       
+        }
     }
 
     /**
      * vymaze expirovane zaznamy ze storage
      * @public
-     * 
+     *
      * @example
      *  var cache = new JsBrowserCache();
      *      cache.clearExpired();
-     * 
+     *
      */
     clearExpired() {
         let keys;
-        
+
         //otestuji jestli je podporovana storage
         if(!this.isSupportsStorage()) {
             return null;
@@ -214,11 +210,11 @@ export default class JsBrowserCache {
             if (keys.length > 0) {
                 for (let i = 0, length = keys.length; i < length; i++){
                     let key = keys[i].replace(this._options.prefix,''), //odeberu u klice prefix
-                        record = this._stringToJson(this._getItem(key)); 
+                        record = this._stringToJson(this._getItem(key));
 
                     //otestuji jestli je polozka expirovana
                     if(record.expire && new Date().getTime() > record.expire) {
-                        console.info('Item "' + key + '" is expired. Item is removed.'); 
+                        console.info('Item "' + key + '" is expired. Item is removed.');
                         this._removeItem(key);
                     }
                 }
@@ -229,11 +225,11 @@ export default class JsBrowserCache {
     /**
      * nastavi storage (local|session) local = localStorage, session = sessionStorage
      * @private
-     * @param {String} storage nazev storage (local|session) 
+     * @param {String} storage nazev storage (local|session)
      */
     _setStorage(storageName) {
         try {
-            this._storage = storageName !== 'session' ? localStorage : sessionStorage;
+            this._storage = storageName !== 'session' ? window.localStorage : window.sessionStorage;
         } catch(e) {
             this._storage = false;
         }
@@ -262,7 +258,7 @@ export default class JsBrowserCache {
     /**
      * smaze zaznam ve storage
      * @private
-     * @param {String} key 
+     * @param {String} key
      */
     _removeItem(key) {
         this._storage.removeItem(this._options.prefix + key);
@@ -272,7 +268,7 @@ export default class JsBrowserCache {
      * prevede json na string
      * @private
      * @param {Object} json
-     * @returns {String} 
+     * @returns {String}
      */
     _jsonToString(json) {
         return JSON.stringify(json);
@@ -281,7 +277,7 @@ export default class JsBrowserCache {
     /**
      * prevede string na json
      * @private
-     * @param {String} string 
+     * @param {String} string
      * @returns {Object}
      */
     _stringToJson(string) {

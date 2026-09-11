@@ -24,7 +24,7 @@
     "@babel/register": "^7.0.0",
     "@partyk/eslint-config-standard": "git+https://github.com/partyk/eslint-config-standart.git",
     "babel-plugin-loop-optimizer": "^1.4.1",
-    "grunt-jsdoc": "^2.2.0",
+    "grunt-jsdoc": "^2.4.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
